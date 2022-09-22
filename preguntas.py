@@ -50,7 +50,7 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return tbl0['_c1'].value_counts()
+    return tbl0['_c1'].value_counts().sort_index()
 
 
 def pregunta_04():
@@ -169,7 +169,7 @@ def pregunta_10():
     """
     tbl0_copy = tbl0.copy()
     tbl0_copy['_c2'] = tbl0_copy['_c2'].astype('str')
-    tbl0_copy = tbl0_copy[['_c1','_c2']].groupby('_c1').aggregate(lambda x: ":".join(sorted(x.tolist())))
+    tbl0_copy = tbl0_copy[['_c1', '_c2']].groupby('_c1').aggregate(lambda x: ":".join(sorted(x.tolist())))
     return tbl0_copy
 
 
@@ -191,7 +191,7 @@ def pregunta_11():
     """
     tbl1_copy = tbl1.copy()
     tbl1_copy = tbl1_copy[['_c0', '_c4']].groupby('_c0').aggregate(lambda x: ",".join(sorted(x.tolist())))
-    return tbl1_copy
+    return tbl1_copy.reset_index()
 
 
 def pregunta_12():
@@ -212,7 +212,8 @@ def pregunta_12():
     tbl2_copy = tbl2.copy()
     tbl2_copy['_c5b'] = tbl2_copy['_c5b'].astype('str')
     tbl2_copy['_c5ab'] = tbl2_copy['_c5a']+':'+tbl2_copy['_c5b']
-    return tbl2_copy[['_c0','_c5ab']].groupby('_c0').aggregate(lambda x: ",".join(sorted(x.tolist())))
+    tbl2_copy = tbl2_copy[['_c0', '_c5ab']].groupby('_c0').aggregate(lambda x: ",".join(sorted(x.tolist())))
+    return tbl2_copy.reset_index()
 
 
 def pregunta_13():
