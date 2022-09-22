@@ -211,8 +211,8 @@ def pregunta_12():
     """
     tbl2_copy = tbl2.copy()
     tbl2_copy['_c5b'] = tbl2_copy['_c5b'].astype('str')
-    tbl2_copy['_c5ab'] = tbl2_copy['_c5a']+':'+tbl2_copy['_c5b']
-    tbl2_copy = tbl2_copy[['_c0', '_c5ab']].groupby('_c0').aggregate(lambda x: ",".join(sorted(x.tolist())))
+    tbl2_copy['_c5'] = tbl2_copy['_c5a']+':'+tbl2_copy['_c5b']
+    tbl2_copy = tbl2_copy[['_c0', '_c5']].groupby('_c0').aggregate(lambda x: ",".join(sorted(x.tolist())))
     return tbl2_copy.reset_index()
 
 
